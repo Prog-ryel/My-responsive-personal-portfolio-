@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Temperature Convert</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Supherhero">
+    <meta name="keywords" content="programming hero,learn programming">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/vnd.microsoft.icon">
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="main.css">
+</head>
+<body class="container">
+<div onclick="toggleIcon()" id="ryel-icon">
+    <a href="rryel.html">
+     <span></span>
+     <span></span>
+     <span></span>
+     <span></span>
+     </a>
+   </div>
+ </body>
+ <script>
+   function toggleIcon () {
+     document.getElementById('ryel-icon')
+       .classList.toggle('open')
+   }
+ </script>
+<div>
+<form id="temperatureForm">
+  <h2>Temperature Converter</h2>
+
+  <label for="fromUnit">From</label> <br>
+  <select name="fromUnit" id="fromUnit">
+    <option value="fahrenheit">Fahrenheit</option>
+    <option value="celcius" selected>Celcius</option>
+    <option value="kelvin">Kelvin</option>
+  </select>
+  <br>
+
+  <label for="toUnit">To</label><br>
+  <select name="toUnit" id="toUnit">
+    <option value="kelvin" selected>Kelvin</option>
+    <option value="fahrenheit">Fahrenheit</option>
+    <option value="celcius">Celcius</option>
+  </select>
+  <br>
+
+  <label for="temperature">Temperature</label> <br>
+  <input type="number" id="temperature" placeholder="Enter a temperature" required>
+  <br>
+
+  <button type="submit" id="submit">Convert</button>
+
+  <h3 id="textDisplay">Result: </h3>
+
+  <p id="result"></p>
+</form>
+</body>
+</div>
+<footer>
+  <p>©developed by ryel-prog❤️</p>
+</footer>
+
+<!--main js-->
+<script>
+    // Add all your JS here
+let forme = document.getElementById('temperatureForm');
+
+forme.addEventListener('submit', (e) => {
+  e.preventDefault();
+  
+  const fromUnit = document.getElementById('fromUnit').value;
+  const toUnit = document.getElementById('toUnit').value;
+  const temperature = parseInt(document.getElementById('temperature').value);
+  
+  const convertedTemperature = convertTemperature(temperature, fromUnit,  toUnit);
+  const resultElement = document.getElementById('result');
+  resultElement.textContent = `°${temperature} ${fromUnit} : is  ${convertedTemperature.toFixed(2)} °${toUnit}`;
+});
+
+function convertTemperature(temperature, fromUnit,  toUnit) {
+  if (fromUnit === 'fahrenheit') {
+    if (toUnit === 'celcius') {
+      return (temperature - 32) * 5 / 9;
+    } else if (toUnit === 'kelvin') {
+      return (temperature - 32) * 5 / 9 + 273.15;
+    }
+  } else if (fromUnit === 'celcius') {
+    if (toUnit === 'fahrenheit') {
+      return (temperature * 9 / 5) + 32;
+    } else if (toUnit === 'kelvin') {
+      return temperature + 273.15 ;
+    }
+  } else if (fromUnit === 'kelvin') {
+    if (toUnit === 'fahrenheit') {
+      return (temperature - 273.15 ) * 9 / + 32;
+    } else if (toUnit === 'celcius') {
+       return temperature + 273.15 ;
+    }
+  }
+  
+  return NaN;
+}
+</script>
+</body>
+</html>
+<style>
+  
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box ;
+}
+
+body {
+  background: linear-gradient(to bottom right, #3498db, #e74c3c);
+  background-repeat: no-repeat;
+  height: 100vh;
+}
+
+#temperatureForm {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  box-shadow: -5px 4px 6px;
+  border: none;
+  margin-top: 10px;
+  color: lightgreen;
+}
+
+h2 {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 30px;
+  color: #333;
+  font-size: 32px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  color: blue;
+}
+
+label {
+  font-size: 20px ;
+  font-weight: bold;
+  color: black;
+}
+
+#fromUnit, #toUnit {
+  margin: 15px  0 15px 0;
+  padding: 10px;
+  width: 100%;
+  font-size: 16px ;
+  color: #555;
+  background-color:;
+  border-radius: 5px;
+}
+
+input[type="number"] {
+  padding: 10px 16px;
+  margin-top: 15px;
+  width: 100%;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: white;
+}
+
+#submit {
+  margin: 0px auto;
+  width: 100%;
+  text-align: center;
+  padding: 10px 10px;
+  background-color: blue ;
+  color: white;
+  border: none;
+  margin-top: 15px;
+  transition: background-color 0.3s ease;
+  border-radius: 6px;
+}
+
+
+
+#textDisplay {
+  font-size: 16px ;
+  margin: 13px 0 10px 0;
+  color: black;
+  font-weight: bold ;
+}
+
+#result {
+  margin-top: 22px;
+  font-weight: bold;
+  color: #555;
+  text-align: center;
+}
+p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 100px;
+  font-size: 12px;
+  }
+  #ryel-icon {
+ width: 50px;
+ height: 60px;
+ position: relative;
+ margin: 0;
+ }
+ 
+ #ryel-icon span {
+   width: 50%;
+   height: 5px;
+   border-radius: 10px;
+   background: blue;
+   position: absolute;
+   transform: rotate(0deg)
+   transition: .25s ease-in-out;
+   }
+ 
+ span:nth-child(1) {
+   top: 0px;
+ }
+ 
+ span:nth-child(2),span:nth-child(3) {
+   top: 9px;
+ }
+ 
+ span:nth-child(4) {
+   top: 18px;
+ }
+ 
+ #ryel-icon.open span:nth-child(1), #ryel-icon.open span:nth-child(1) {
+   opacity: 0;
+   width: 0;
+ }
+ 
+ #ryel-icon.open span:nth-child(2), #ryel-icon.open span:nth-child(2) {
+   transform: rotate(45deg)
+ }
+ 
+ #ryel-icon.open span:nth-child(3) {
+   transform: rotate(-45deg)
+ }
+ 
+ #ryel-icon.open span:nth-child(4) {
+   opacity: 0;
+   width: 0;
+ }
+</style>
